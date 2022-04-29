@@ -1,0 +1,116 @@
+# Author: Rachit Gupta
+# This template would be used to deploy bicep files.
+
+trigger: none
+
+name: Deploy Bicep files
+
+parameters:
+- name: resourceGroupName
+  displayName: Choose resource group name
+  type: string
+  values:
+  - rg-td-weu-mycompany-datahub
+  - rg-pr-weu-mycompany-datahub
+  - rg-mng-weu-mycompany-datahub
+  - not-needed-when-scope-subscription
+  default: rg-td-weu-mycompany-datahub
+
+- name: location
+  displayName: Enter location name
+  type: string
+  default: westeurope
+  
+- name: environment
+  displayName: Choose deployment environment 
+  type: string
+  values:
+  - test
+  - prod
+  - manage
+  default: test
+
+- name: azureServiceConnection
+  displayName: Enter azure service connection name
+  type: string
+  values:
+    - svc-test-mycompany-datahub
+    - svc-prod-mycompany-datahub
+    - svc-manage-mycompany-datahub
+    - svc-scope-subs-level
+  default: svc-test-mycompany-datahub
+
+- name: scriptname
+  displayName: Choose script to run 
+  type: string
+  values:
+  - azuredatamanagementdeploy
+  - azuredataplatformdeploy
+  - azureresourcegroupdeploy
+  default: azuredataplatformdeploy
+
+variables:
+#  vmImageName: 'ubuntu-latest'
+#  templateFileName: './bicep_templates/Data-Landing-Zone/${{ parameters.scriptname }}.bicep'
+#  parameterFileName: '@./bicep_templates/Data-Landing-Zone/${{ parameters.scriptname }}.parameters-${{ parameters.environment }}.json'
+#  deploymentMode: 'Incremental'
+#- name: zone
+#  value:
+  ${{ if eq( parameters.environment, 'test') }}: 
+    zone: 'Data-Landing-Zone'
+  ${{ if eq( parameters.environment, 'prod') }}:
+    zone: 'Data-Landing-Zone'
+  ${{ if eq( parameters.environment, 'manage') }}:
+    zone: 'Data-Management-Zone'
+  vmImageName: 'ubuntu-latest'
+  templateFileName: './bicep_templates/$(zone)/${{ parameters.scriptname }}.bicep'
+  parameterFileName: '@./bicep_templates/$(zone)/${{ parameters.scriptname }}.parameters-${{ parameters.environment }}.json'
+  deploymentMode: 'Incremental'
+#- name: vmImageName 
+#  value: 'ubuntu-latest'
+#- name: templateFileName 
+#  value: './bicep_templates/Data-Landing-Zone/${{ parameters.scriptname }}.bicep'
+#- name: parameterFileName 
+#  value: '@./bicep_templates/Data-Landing-Zone/${{ parameters.scriptname }}.parameters-${{ parameters.environment }}.json'
+#- name: deploymentMode 
+#  value: 'Incremental'
+  
+pool:
+  vmImage: $(vmImageName)
+
+stages:
+- stage: MainStage
+  displayName: 'Deploy ${{ parameters.scriptname }} bicep file'
+  jobs:
+  - ${{ if contains(parameters.scriptname, 'azuredataplatformdeploy') }}:
+    - job: JobDeployOnResource
+      steps:
+      - task: AzureCLI@2
+        inputs:
+          azureSubscription: ${{ parameters.azureServiceConnection }}
+          scriptType: bash
+          scriptLocation: inlineScript
+          inlineScript: |
+            az version
+            az bicep install
+            az bicep version
+            echo 'Deployment Started....'
+            az deployment group create --resource-group ${{ parameters.resourceGroupName }} --template-file $(templateFileName) --parameters $(parameterFileName)
+            echo 'Deployment Ended....'
+            
+  - ${{ if contains(parameters.scriptname, 'azureresourcegroupdeploy') }}:
+    - job: JobDeployOnSubscription
+      steps:
+      - task: AzureCLI@2
+        inputs:
+          azureSubscription: ${{ parameters.azureServiceConnection }}
+          scriptType: bash
+          scriptLocation: inlineScript
+          inlineScript: |
+            az version
+            az bicep install
+            az bicep version
+            echo 'az deployment sub create --location ${{ parameters.location }} --template-file $(templateFileName) --parameters $(parameterFileName)'
+            echo 'Deployment Started....'
+            az deployment sub create --location ${{ parameters.location }} --template-file $(templateFileName) --parameters $(parameterFileName)
+            echo 'Deployment Ended....'

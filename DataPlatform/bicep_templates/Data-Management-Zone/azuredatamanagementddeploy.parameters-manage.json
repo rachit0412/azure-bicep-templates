@@ -1,0 +1,96 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "deployNetworkSecurityGroup": {
+      "value": true
+    },
+    "deployVirtualNetwork": {
+      "value": false
+    },
+    "deployKeyVault": {
+      "value": true
+    },
+    "deployPrivateEndPoint": {
+      "value": true
+    },
+    "deployPrivateDnsZone": {
+      "value": true
+    },    
+    "deployPrivateDnsZoneGroups": {
+      "value": true
+    },
+    "deployLogAnalyticsWorkspace": {
+      "value": true
+    },
+    "resourceGroupNameManage": {
+      "value": "RG-P-WEU-mycompany-DATAHUBMGMT"
+    },  
+    "subscriptionIdManage": {
+      "value": "a4bxxxxx-xxxx-xxxx-xxxx-xxxxx8c5a308"
+    },  
+    "organisationName": {
+      "value": "mycompany"
+    },
+    "environmentType": {
+      "value": "P"
+    },
+    "locationShortName": {
+      "value": "WEU"
+    },
+    "backUp": {
+      "value": "N/A"
+    },
+    "costCentre": {
+      "value": "GDWH"
+    },
+    "disasterRecovery": {
+      "value": "N/A"
+    },
+    "environment": {
+      "value": "Development, Test"
+    },
+    "ipSecPolicy": {
+      "value": "Default"
+    },
+    "owner": {
+      "value": "NL-mycompany"
+    },
+    "displayName": {
+      "value": ""
+    },
+    "projectName": {
+      "value": "NL-mycompany-BI-Azure"
+    },
+    "logicalName": {
+      "value": ""
+    },
+    "provider": {
+      "value": ""
+    },
+    "functionalName": {
+      "value": "DataHubMgmt"
+    },
+    "virtualNetworkPrefix": {
+      "value": "10.137.130.64/26" 
+    },
+    "subnetPrefix": {
+      "value": "10.137.130.64/26" 
+    },
+    "deleteRetentionInDays": {
+      "value": 90
+    },
+    "privateDnsZoneNames": {
+      "value": [
+        "privatelink.adf.azure.com",
+        "privatelink.blob.core.windows.net",
+        "privatelink.dfs.core.windows.net",
+        "privatelink.datafactory.azure.net",
+        "privatelink.azuresynapse.net",
+        "privatelink.dev.azuresynapse.net",
+        "privatelink.sql.azuresynapse.net",
+        "privatelink.vaultcore.azure.net",
+        "privatelink.database.windows.net"
+    ]}
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "deployNetworkSecurityGroup": {
+      "value": true
+    },
+    "deployVirtualNetwork": {
+      "value": true
+    },
+    "deployStorageAccount": {
+      "value": true
+    },
+    "deployPrivateEndPoint": {
+      "value": true
+    }, 
+    "deployPrivateDnsZoneGroups": {
+      "value": true
+    }, 
+    "deployDataFactory": {
+      "value": true
+    },
+    "deployKeyVault": {
+      "value": true
+    },
+    "deployKeyVaultSecret": {
+      "value": true
+    },
+    "deployAzureSynapseAnalyticsWorkspace": {
+      "value": true
+    },
+    "deployVirtualNetworkPeerings": {
+      "value": true
+    },
+    "deployAzureSqlServer": {
+      "value": true
+    },
+    "deployAzureSqlDb": {
+      "value": true
+    },
+    "organisationName": {
+      "value": "mycompany"
+    },
+    "resourceGroupNameManage": {
+      "value": "RG-P-WEU-mycompany-DATAHUBMGMT"
+    }, 
+    "subscriptionIdManage": {
+      "value": "1e360853-xxxx-xxxx-xxxx-xxxxe58e56c6"
+    },   
+    "functionalName": {
+      "value": "DataHub"
+    },
+    "functionalNameManage": {
+      "value": "DataHubMgmt"
+    },
+    "environmentType": {
+      "value": "P"
+    },
+    "environmentManageType": {
+      "value": "P"
+    },
+    "locationShortName": {
+      "value": "WEU"
+    },
+    "backUp": {
+      "value": "N/A"
+    },
+    "costCentre": {
+      "value": "GDWH"
+    },
+    "disasterRecovery": {
+      "value": "N/A"
+    },
+    "environment": {
+      "value": "Production"
+    },
+    "ipSecPolicy": {
+      "value": "Default"
+    },
+    "owner": {
+      "value": "NL-mycompany"
+    },
+    "displayName": {
+      "value": ""
+    },
+    "projectName": {
+      "value": "NL-mycompany-BI-Azure"
+    },
+    "logicalName": {
+      "value": ""
+    },
+    "provider": {
+      "value": ""
+    },
+    "virtualNetworkPrefix": {
+      "value": "10.137.130.128/26" 
+    },
+    "subnetPrefix": {
+      "value": "10.137.130.128/26" 
+    },
+    "deleteRetentionInDays": {
+      "value": 90
+    },
+    "storageAccountType": {
+      "value": "Standard_ZRS"
+    },
+    "groupIdSaArray": {
+      "value": [
+        "blob", 
+        "dfs"
+    ]
+    },
+    "containerNames": {
+      "value": [
+        "raw",
+        "enriched",
+        "curated",
+        "workspace",
+        "backup" 
+    ]},
+    "groupIdSynwArray": {
+      "value": [
+        "SqlOnDemand", 
+        "Sql",
+        "Dev"
+    ]
+    },
+    "synapseAnalyticsSqlAdministratorLogin": {
+      "value": "synwsqladminuser"
+    },
+    "administratorUsernameSqlServer": {
+      "value": "sqlserveradmin"
+    },
+    "sqlserverMetastoreDbName": {
+      "value": "adfmetadatastoredb"
+    }
+  }
+}

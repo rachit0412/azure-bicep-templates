@@ -1,0 +1,45 @@
+{
+    "analyzers": {
+      "core": {
+        "verbose": false,
+        "enabled": true,
+        "rules": {
+          "no-hardcoded-env-urls": {
+            "level": "warning",
+            "disallowedhosts": [
+              "management.core.windows.net",
+              "gallery.azure.com",
+              "management.core.windows.net",
+              "management.azure.com",
+              "login.microsoftonline.com",
+              "graph.windows.net",
+              "trafficmanager.net",
+              "datalake.azure.net",
+              "azuredatalakestore.net",
+              "azuredatalakeanalytics.net",
+              "api.loganalytics.io",
+              "api.loganalytics.iov1",
+              "asazure.windows.net",
+              "region.asazure.windows.net",
+              "api.loganalytics.iov1",
+              "api.loganalytics.io",
+              "asazure.windows.net",
+              "region.asazure.windows.net",
+              "schema.management.azure.com",
+              "batch.core.windows.net"
+            ],
+            "excludedhosts": [
+              "core.windows.net",
+              "vault.azure.net",
+              ".vaultcore.azure.net",
+              ".sql.azuresynapse.net",
+              ".dfs.core.windows.net",
+              ".blob.core.windows.net",
+              ".datafactory.azure.net",
+              ".database.windows.net"
+            ]
+          }
+        }
+      }
+    }
+  }

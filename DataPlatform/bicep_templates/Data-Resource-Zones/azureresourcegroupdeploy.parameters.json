@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "subscriptionID": {
+      "value": "1e360853-xxxx-xxxx-xxxx-853be58e56c6"
+    },
+    "organisationName": {
+      "value": "mycompany"
+    },
+    "environmentType": {
+      "value": "TD"
+    },
+    "functionalName": {
+      "value": "DataHub"
+    },
+    "location": {
+      "value": "westeurope"
+    },
+    "locationShortName": {
+      "value": "WEU"
+    },
+    "backUp": {
+      "value": "N/A"
+    },
+    "costCentre": {
+      "value": "Group IT"
+    },
+    "disasterRecovery": {
+      "value": "N/A"
+    },
+    "environment": {
+      "value": "Development, Test"
+    },
+    "ipSecPolicy": {
+      "value": "Default"
+    },
+    "owner": {
+      "value": "Group IT"
+    },
+    "displayName": {
+      "value": ""
+    },
+    "projectName": {
+      "value": "NL-mycompany-BI-Azure"
+    },
+    "logicalName": {
+      "value": ""
+    },
+    "provider": {
+      "value": ""
+    }
+  }
+}
